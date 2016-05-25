@@ -1,0 +1,23 @@
+﻿@model MvcApplication4.Models.Booking
+
+@{
+    ViewBag.Title = "book2";
+}
+<h2>@ViewBag.msg</h2>
+<h2>Booking</h2>
+
+<form method="post" action="/Halls/book3">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+
+
+    <div>
+        <input type="number" placeholder="no of people" name="people" />
+    </div>
+    <input type="hidden"  name="date" value="@ViewBag.dt" />
+    <input type="hidden" name="hid" value="@ViewBag.hid" />
+    <input type="hidden" name="status" value="pending" />
+
+    <input type="submit"  value="Request" />
+</form>

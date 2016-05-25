@@ -1,0 +1,175 @@
+﻿@*@model List<MvcApplication4.Models.User>*@
+@model IEnumerable<MvcApplication4.Models.User>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search</h2>
+
+
+
+@Html.ActionLink("View All", "Index", "Users")
+
+
+<form method="post" action="/Users/Search">
+
+Search by:
+    @Html.RadioButton("searchby","cst") Cast<br/>
+    <select id="cast" name="cast">
+
+
+
+        <option value="Arain">Arain</option>
+        <option value="Butt">Butt</option>
+        <option value="Baig">Baig</option>
+        <option value="Baloch">Baloch</option>
+        <option value="Gujjar">Gujjar</option>
+        <option value="Jutt">Jutt</option>
+        <option value="Kashmiri">Kashmiri</option>
+        <option value="Khakwani">Khakwani</option>
+        <option value="Kharral">Kharral</option>
+        <option value="Malik">Malik</option>
+        <option value="Mughal">Mughal</option>
+        <option value="Rajput">Rajput</option>
+        <option value="Qureshi">Qureshi</option>
+        <option value="Syed">Syed</option>
+        <option value="Sheikh">Sheikh</option>
+        <option value="Siddique">Siddique</option>
+        <option value="Somro">Somro</option>
+        <option value="Other">Other</option>
+
+
+    </select>
+    <br />
+    Search by:
+    @Html.RadioButton("searchby", "q") Qualification<br />
+
+    <select id="qualification" name="qualification">
+
+
+
+        <option value="primary">primary</option>
+        <option value="middle">middle</option>
+        <option value="ssc">ssc</option>
+        <option value="hsc">hsc</option>
+        <option value="intermediate">intermediate</option>
+        <option value="undergraduate">undergraduate</option>
+        <option value="other">other</option>
+
+    </select>
+    <br/>
+
+    Search by:
+    @Html.RadioButton("searchby", "age") Age<br />
+
+   Min: @Html.TextBox("age1")-Max: @Html.TextBox("age2")
+
+    <br />
+
+    Search by:
+   <div style="width:3px"> @Html.RadioButton("searchby", "income")</div> Income<br />
+
+    Min: @Html.TextBox("in1")-Max: @Html.TextBox("in2")
+    <input type="submit" class="btn btn-info" value="Search" />
+
+</form>
+
+
+<table>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.gender)
+        </th>
+        @*<th>
+                @Html.DisplayNameFor(model => model.Password)
+            </th>*@
+        <th>
+            @Html.DisplayNameFor(model => model.age)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cast)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.qualification)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cnic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.work)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.income)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.cell)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {  
+        
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.gender)
+            </td>
+            @*<td>
+                    @Html.DisplayFor(modelItem => item.Password)
+                </td>*@
+            <td>
+                @Html.DisplayFor(modelItem => item.age)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cast)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.qualification)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cnic)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.address)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.work)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.income)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.cell)
+            </td>
+          
+        </tr>
+        
+    }
+
+</table>
+
+
+
+
+@*@foreach (var s in Model)
+{
+
+
+
+
+    <h1>@s.Name</h1>
+    <p>@s.cast</p>
+
+
+
+}*@

@@ -1,0 +1,89 @@
+﻿@model MvcApplication4.Models.User
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.age)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.age)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cast)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cast)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.qualification)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.qualification)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cnic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cnic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.work)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.work)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.income)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.income)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cell)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cell)
+    </div>
+</fieldset>
+@using (Html.BeginForm()) {
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Delete" /> |
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+}

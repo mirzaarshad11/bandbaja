@@ -1,0 +1,86 @@
+﻿@model MvcApplication4.Models.User
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<fieldset>
+    <legend>User</legend>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.Name)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Name)
+    </div>
+
+    @*<div class="display-label">
+         @Html.DisplayNameFor(model => model.Password)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.Password)
+    </div>*@
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.age)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.age)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cast)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cast)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.qualification)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.qualification)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cnic)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cnic)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.address)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.address)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.work)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.work)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.income)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.income)
+    </div>
+
+    <div class="display-label">
+         @Html.DisplayNameFor(model => model.cell)
+    </div>
+    <div class="display-field">
+        @Html.DisplayFor(model => model.cell)
+
+    </div>
+</fieldset>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id=Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

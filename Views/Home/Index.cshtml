@@ -1,0 +1,40 @@
+﻿@{
+    Layout = "~/Views/Shared/_HomePage.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index1</title>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $("#b1").on("click", function () {
+                var v = $("#t1").val();
+                $("#d1").html(v);
+                $.getJSON("/Home/Embeded")
+            });
+        });
+</script>
+</head>
+<body>
+    <div style="text-align:center">
+        @*<input type="text" id="t1" />
+        <input type="button" value="Embed Your Code here" id="b1" />*@
+        <h3>Login </h3>
+
+        <h3>@ViewBag.msg</h3>
+        <div id="checking">Checking...</div>
+          <form method="post" action="/Users/login">
+          @Html.ValidationSummary()
+          UserName: <input type="text" name="Name"  id="UserName" /><br /> @*<input id="b1" type="button" value="check" />*@
+          <br />
+          Password:   <input type="password" name="Password"  /><br /><br />
+          <input type="submit" class="btn btn-info" value="Login" />
+</form>
+    </div>
+</body>
+</html>

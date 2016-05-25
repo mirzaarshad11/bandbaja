@@ -1,0 +1,23 @@
+﻿@model List<MvcApplication4.Models.Hall>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<h2></h2>
+
+
+    @foreach (var s in Model)
+{
+   
+        <div style="float: left; width: 150px; height: 150px; margin: 10px 10px 10px 10px;">
+            <img src="@s.Image" alt="" width="150" height="150"><br>
+           
+        </div>
+        <h1>@s.Name</h1>
+        <p>@s.Address</p>
+        <p>@s.Contact</p>
+      <p> @Html.ActionLink("Details", "Details", new {id=s.Id})</p>
+        <div style="clear:both"></div>
+       
+}

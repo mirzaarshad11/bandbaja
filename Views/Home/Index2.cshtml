@@ -1,0 +1,101 @@
+﻿@model MvcApplication4.Models.User
+@{
+    ViewBag.Title = "Welcome";
+}
+@*@section featured {
+    <section class="featured">
+        <div class="content-wrapper">
+            <hgroup class="title">
+                <h1>@ViewBag.Title.</h1>
+                
+            </hgroup>
+           
+        </div>
+    </section>
+}*@
+@{
+    Layout= "~/Views/Shared/_HomePage.cshtml";
+    }
+<script src="~/Scripts/jquery-1.7.1.js"></script>
+<title>Index</title>
+
+
+<input type="text" id="t1" />
+<input type="button" value="Embed Your Code here" id="b1" />
+<div id="d1" style="margin-left:auto;margin-right:auto;width:544px;">
+
+</div>
+
+
+
+<h3>Login </h3>
+
+<h3>@ViewBag.msg</h3>
+<div id="checking">Checking...</div>
+<form method="post" action="/Users/login">
+    @Html.ValidationSummary()
+   UserName: <input type="text" name="Name"  id="UserName" /> @*<input id="b1" type="button" value="check" />*@
+    <br /><div id="result"></div>
+    Password:   <input type="password" name="Password"  /><br />
+    <input type="submit" class="btn btn-info" value="Login" />
+</form>
+
+    @*<h3>Upload Images </h3>
+    <form action="/Home/save" method="post" enctype="multipart/form-data">
+
+        <p style="margin-left: 20px; font-size: 14px">
+            Upload profile picture: <input type="file" name="image" />
+        </p>
+        <p><input type="submit" value="upload" /></p>
+    </form>*@
+   
+    
+   
+
+    
+    
+    
+   
+
+
+
+
+@Scripts.Render("~/bundles/jquery")
+
+
+<script>
+    $(document).ready(function () {
+        $("#b1").on("click", function () {
+            var v = $("#t1").val();
+            $("#d1").html(v);
+            $.getJSON("/Home/Embeded")
+        });
+    });
+</script>
+@*<script>
+
+    $(document).ready(function () {
+
+        $('#checking').hide();
+
+        $('#b1').click(function () {
+
+            var userName = $('#UserName').val();
+
+            //alert('User Name ='+ userName);
+            $('#checking').show();
+            $.getJSON("/User/CheckUserName?UserName=" + userName, function (data) {
+                $('#checking').hide();
+                if (data) {
+                    $('#result').text("User already exists in database");
+
+                }
+                else {
+                    $('#result').text("User Name is available");
+                }
+            });
+
+        });
+
+    });
+</script>*@

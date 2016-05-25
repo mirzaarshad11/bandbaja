@@ -1,0 +1,185 @@
+﻿@model IEnumerable<MvcApplication4.Models.Item>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>All_Items</title>
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <style>
+        .img {
+            width:150px;
+            height:150px;
+        }
+    </style>
+    <script>
+        $(function () {
+            $('.cb1').click(function () {
+                var checkedValue;
+                if (this.checked) {
+                    var q = $(".qty").val();
+                    checkedValue = $(this).val();
+                    var qty;
+                    var test_arr = $("input[class ='"+checkedValue+"']");
+                    for (var i = 0; i < test_arr.length; i++) {
+                        qty = $(test_arr[i]).val();
+                    }
+                    //
+                    if (qty <= 0) {
+                        alert("please enter correct value of qantity");
+                        this.checked = false;
+                    }
+                    else {
+                        $(test_arr[test_arr.length - 1]).hide();
+                    }
+                    //
+                    $.getJSON("/Dowry/Order_Items?item_data=" + checkedValue + "&Qty=" + qty, function (list1) {
+                        var content = '<table border="1"><tr><td style="width:40%"><label>Name</label></td><td style="width:40%"><label>Price/1-qty</label></td><td style="width:20%"><label>Qty.</label></td><td style="width:20%"><label>Price/total qty</label></td></tr>';
+                        for (var i = 0; i < list1.length;i++)
+                        {
+                            content += '<tr><td>' + list1[i].ItemName + ' </td><td>' + list1[i].ItemPrice + ' Rs. </td><td>' + list1[i].Quantity + '</td><td>' + list1[i].ItemPrice*list1[i].Quantity + ' Rs. </td></tr>';
+                        }
+                        var total = 0;
+                        var qu = 0;
+                        for (var i = 0; i < list1.length; i++) {
+                            total = total + list1[i].ItemPrice*list1[i].Quantity;
+                            qu = qu + list1[i].Quantity;
+                        }
+                        content += '<tr><td><label>Total</label></td><td><label>=</label></td><td><label>' + qu + '</label></td><td><label>' + total + '</label></td></tr>';
+                        content += '</table><br/>';
+                        if (list1.length > 0)
+                            content += '<a href="OrderNow" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>';
+                        $("#here_table").html(content);
+                    });
+                }
+                if (!this.checked) {
+                    checkedValue = $(this).val();
+                    //
+                    var test_arr = $("input[class ='" + checkedValue + "']");
+                    $(test_arr[test_arr.length - 1]).show();
+                    //alert(checkedValue);
+                    $.getJSON("/Dowry/Remove_Order?item_data=" + checkedValue, function (list1) {
+                        var content = '<table border="1"><tr><td style="width:40%"><label>Name</label></td><td style="width:40%"><label>Price/1-qty</label></td><td style="width:20%"><label>Qty.</label></td><td style="width:20%"><label>Price/total qty</label></td></tr>';
+                        for (var i = 0; i < list1.length; i++) {
+                            content += '<tr><td>' + list1[i].ItemName + ' </td><td>' + list1[i].ItemPrice + ' Rs. </td><td>' + list1[i].Quantity + '</td><td>' + list1[i].ItemPrice * list1[i].Quantity + ' Rs. </td></tr>';
+                        }
+                        var total = 0;
+                        var qu = 0;
+                        for (var i = 0; i < list1.length; i++) {
+                            total = total + list1[i].ItemPrice * list1[i].Quantity;
+                            qu = qu + list1[i].Quantity;
+                        }
+                        content += '<tr><td><label>Total</label></td><td><label>   =</label></td><td><label>' + qu + '</label></td><td><label>' + total + '</label></td></tr>';
+                        content += '</table><br/>';
+                        if (list1.length > 0)
+                            content += '<a href="OrderNow" class="btn btn-info btn-lg"><span class="glyphicon glyphicon-shopping-cart"></span> Order Now</a>';
+                        $("#here_table").html(content);
+                    });
+                }
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-1"></div>
+        <div class="col-md-6">
+            <h1>All Items of All Category</h1>
+            <hr />
+            @if (Model.Count() == 0)
+            {
+                <h1>No Items found of this category</h1>
+            }
+            else
+            {
+                foreach (var itm in Model)
+                {
+                    var u = "Quantity";
+                    var v = itm.name + "|" + itm.Model + "|" + itm.price + "|" + itm.username;
+                <div style="float: left; width: 150px; height: 200px; margin: 10px 10px 10px 10px;">
+                    <img src="@Url.Content(itm.path)" class="img" />
+                </div>
+                <h1>@itm.name</h1>
+                <p>Model: @itm.Model</p>
+                <p>Category: @itm.category</p>
+                <h4>Price: @itm.price Rs.</h4>
+                
+                @u <input type="number" name="Name" class="@v" value="1" style="width:10%" /><br /><br />
+                <span style="font-size:x-large" class="glyphicon glyphicon-shopping-cart"></span> <input type="checkbox" name="Name" value="@v" class="cb1" />
+                <p>Description: @itm.description</p>
+                <hr style="height:2px; background-color:#333; color:#333">
+                }
+            }
+                @*<table border="1">
+                    <tr>
+                        <td style="width:25%">
+                            <label>Item Picture</label>
+                        </td>
+                        <td style="width:30%">
+                            <label>Description</label>
+                        </td>
+                        <td style="width:15%">
+                            <label>Category</label>
+                        </td>
+                        <td style="width:15%">
+                            <label>Model No.</label>
+                        </td>
+                        <td style="width:15%">
+                            <label>Price</label>
+                        </td>
+                    </tr>
+                    @foreach (var itm in Model)
+                    {
+                        var v = itm.Name + "|" + itm.Model + "|" + itm.Price+"|"+itm.Username;
+                        <tr>
+                            <td>
+                                <h4>@itm.Name</h4>
+                                <img src="@Url.Content(itm.Path)" class="img" />
+                            </td>
+                            <td>
+                                @itm.Description
+                            </td>
+                            <td>
+                                @itm.Category
+                            </td>
+                            <td>
+                                @itm.Model
+                            </td>
+                            <td>
+                                @itm.Price Rs.
+                              <br />QTY.<input type="number" name="Name" class="@v" value="1" style="width:50%" /><br /><br />
+                              <span style="font-size:x-large" class="glyphicon glyphicon-shopping-cart"></span> <input type="checkbox" name="Name" value="@v" class="cb1" />
+
+                            </td>
+                        </tr>
+                    }
+                </table>*@      
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h1>Menu</h1>
+            <label>Categories:</label><br />
+            <a href="~/Dowry/All_Items">All</a><br />
+            <a href="~/Dowry/All_ItemsofElectronics">Electronics</a><br />
+            <a href="~/Dowry/All_ItemsofFurniture">Furniture</a><br />
+            <a href="~/Dowry/All_ItemsofCrockery">Crockery</a><br />
+            @*<a href="#">Dresses</a><br />*@
+            <a href="~/Dowry/All_ItemsofOthers">Others</a><br />
+            <h1>Your order</h1>
+            <div id="here_table"></div>
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</body>
+</html>

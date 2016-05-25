@@ -1,0 +1,36 @@
+﻿@model MvcApplication4.Models.Order
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <title>OrderDetail</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+            <h2>Order Details</h2><br />
+            <label>Customer Name:</label> @Model.customerName <br />
+            <label>Customer Email: </label> @Model.customerEmail <br />
+            <label>Customer Phone:</label> @Model.phone <br />
+            <label>Customer Address:</label> @Model.address <br />
+            <label>Item Name:</label> @Model.itemName <br />
+            <label>Item Model:</label> @Model.itemModel <br />
+            <label>Item Price:</label> @Model.itemPrice <br />
+            <label>Quantity: </label> @Model.quantity <br /><br />
+            <h3>when you have sent this item to customer then click on 'Done Order Process' for delete this order message</h3>
+            <a href="#">Done Order Process</a>
+        </div>
+        <div class="col-xs-3"></div>
+        
+    </div>
+</body>
+</html>

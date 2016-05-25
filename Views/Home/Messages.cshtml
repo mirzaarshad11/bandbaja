@@ -1,0 +1,44 @@
+﻿@model IEnumerable<MvcApplication4.Models.Order>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <script src="~/Content/bootstrap.js"></script>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Messages</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+    @if (Model.Count() == 0)
+    {
+        <h3>you have no any order or mesage</h3>
+    }
+    else
+    {
+        <h2>Your Orders</h2>
+        <br />
+        foreach(var i in Model)
+        {
+            <label>Customer Name: </label> @i.customerName <br />
+            <label>Item Name: </label> @i.itemName <br />
+            <label>Item Model: </label> @i.itemModel <br />
+            <label>Quantity: </label> @i.quantity <br />
+            <label>Customer Phone: </label> @i.phone <br />
+            @Html.ActionLink("View Details", "OrderDetail", new { id = i.Id })
+            <hr style="height:2px; background-color:black">
+        }
+        
+    }
+            </div>
+        <div class="col-xs-2"></div>
+        </div>
+</body>
+</html>

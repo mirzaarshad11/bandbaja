@@ -1,0 +1,35 @@
+﻿@model MvcApplication4.Models.Items
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Content/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>EditPost1</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <form action="~/ShopHome/UpdateDetails" method="post" >
+            <h2>Update Item Detail</h2><br /><br />
+            Item Name:   <input type="text" value="@Model.Name" name="Name"/><br /><br />
+            Description: <input type="text" value="@Model.Description" name="Description" /><br /><br />
+            Model:       <input type="text" value="@Model.Model" name="Model" /><br /><br />
+            Price:       <input type="text" value="@Model.Price" name="Price" /><br /><br />
+                         <input type="submit" value="Update Details" />
+            </form>
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+</body>
+</html>

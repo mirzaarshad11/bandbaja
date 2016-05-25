@@ -1,0 +1,99 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <script src="~/Content/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <style>
+        .set {
+            width: 100%;
+        }
+        #p1 {
+            color:red;
+        }
+    </style>
+    <script>
+        $(document).ready(function () {
+            $("#sub1").on("click", function () {
+                var a = $("#pwd").val();
+                var b = $("#repwd").val();
+                var bool = true;
+                if (a != b) {
+                    $("#p1").text("Password not match");
+                    bool = false;
+                }
+                return bool;
+            });
+        });
+
+        function CheckUser() {
+            var emal = $("#em").val();
+            var ss = true;
+            $.getJSON("/ShopHome/CheckUser?un=" + emal, function (d) {
+                if (d == 1) {
+                    ss = false;
+                    alert("already exist");
+                    return false;
+                }
+                else
+                    return true;
+            });
+            alert(ss);
+            
+        }
+    </script>
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-3">
+            <form action="~/ShopHome/Signup" method="post" onsubmit="return CheckUser()" >
+            <h1>Registration</h1><br />
+            <input type="text" placeholder="Enter Shop Name" name="ShopName" class="set" required /><br /><br />
+            Category: 
+            <select name="Category">
+                <option value="electronics">Electronics</option>
+                <option value="furniture">Furniture</option>
+                <option value="crockery">Crockery</option>
+                <option value="clothes">Dress</option>
+                <option value="other">other</option>
+            </select><br /><br />
+            <input type="text" placeholder="First Name" name="Fname" class="set" required /><br /><br />
+            <input type="text" placeholder="Last Name" name="Lname" class="set"  required /><br /><br />
+            <input type="email" placeholder="Email" id="em" name="Username" class="set" required /><p id="cu"></p><br /><br />
+            <input type="password" placeholder="Password" id="pwd" name="Password" class="set"  required /><br /><br />
+            <input type="password" placeholder="Re-Enter Password" id="repwd" class="set" required /><p id="p1"></p><br /><br />
+            <input type="text" placeholder="Shop Address" name="Address" class="set" required /><br /><br />
+            <input type="text" placeholder="Phone No." name="Phone" class="set" required /><br /><br />
+            <input type="text" placeholder="CNIC No." name="Cnic" class="set" required /><br /><br />
+            <input type="submit" id="sub1" value="Signup" />
+            </form>
+        </div>
+
+        <div class="col-md-2">
+        </div>
+
+        <div class="col-md-3">
+            <h1>Log in</h1><br />
+            <form action="~/ShopHome/SignIn" method="post">
+            <input type="text" placeholder="Username" name="Username" class="set" required /><br /><br />
+            <input type="password" placeholder="Password" name="Password" class="set" required /><br /><br />
+            <input type="submit" value="Login" />
+            </form>
+        </div>
+
+        <div class="col-xs-2">
+        </div>
+    </div>
+</body>
+</html>

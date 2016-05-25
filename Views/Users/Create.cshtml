@@ -1,0 +1,184 @@
+﻿@model MvcApplication4.Models.User
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+@*@using (Html.BeginForm("Create","Users")) {*@
+<form method="post" action="/Users/Create">
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+
+    <fieldset>
+        <legend>User</legend>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.Name)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Name)
+            @Html.ValidationMessageFor(model => model.Name)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.gender)
+        </div>
+
+        <select id="gender" name="gender">
+
+
+
+            <option value="male">male</option>
+            <option value="female">female</option>
+          
+            
+
+        </select>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.Password)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.Password)
+            @Html.ValidationMessageFor(model => model.Password)
+        </div>*@
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.age)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.age)
+            @Html.ValidationMessageFor(model => model.age)
+        </div>
+
+        @*<div class="editor-label">
+            @Html.LabelFor(model => model.cast)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cast)
+            @Html.ValidationMessageFor(model => model.cast)
+        </div>*@
+
+        @*<input list="browsers" name="cast">
+        <datalist id="browsers">
+            <option value="Internet Explorer">
+            <option value="Firefox">
+            <option value="Chrome">
+            <option value="Opera">
+            <option value="Safari">
+        </datalist>*@
+        @Html.LabelFor(model => model.cast)
+
+        <select id="cast" name="cast">
+
+            
+
+            <option value="Arain">Arain</option>
+            <option value="Butt">Butt</option>
+            <option value="Baig">Baig</option>
+            <option value="Baloch">Baloch</option>
+            <option value="Gujjar">Gujjar</option>
+            <option value="Jutt">Jutt</option>
+            <option value="Kashmiri">Kashmiri</option>
+            <option value="Khakwani">Khakwani</option>
+            <option value="Kharral">Kharral</option>
+            <option value="Malik">Malik</option>
+            <option value="Mughal">Mughal</option>
+            <option value="Rajput">Rajput</option>
+            <option value="Qureshi">Qureshi</option>
+            <option value="Syed">Syed</option>
+            <option value="Sheikh">Sheikh</option>
+            <option value="Siddique">Siddique</option>
+            <option value="Somro">Somro</option>
+            <option value="Other">Other</option>
+
+
+            </select>
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.qualification)
+        </div>
+        
+        <select id="qualification" name="qualification">
+
+
+
+            <option value="primary">primary</option>
+            <option value="middle">middle</option>
+            <option value="ssc">ssc</option>
+            <option value="hsc">hsc</option>
+            <option value="intermediate">intermediate</option>
+            <option value="undergraduate">undergraduate</option>
+            <option value="other">other</option>
+
+        </select>
+
+
+        
+
+            @Html.ValidationMessageFor(model => model.qualification)
+        
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cnic)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cnic)
+            @Html.ValidationMessageFor(model => model.cnic)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.address)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.address)
+            @Html.ValidationMessageFor(model => model.address)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.work)
+        </div>
+        
+
+        <select id="work" name="work">
+
+
+
+            <option value="Business">Business</option>
+            <option value="Job">Job</option>
+
+            <option value="other">other</option>
+
+        </select>
+        <div class="editor-label">
+            @Html.LabelFor(model => model.income)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.income)
+            @Html.ValidationMessageFor(model => model.income)
+        </div>
+
+        <div class="editor-label">
+            @Html.LabelFor(model => model.cell)
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.cell)
+            @Html.ValidationMessageFor(model => model.cell)
+        </div>
+
+        <p>
+            <input type="submit" value="Create" />
+        </p>
+    </fieldset>
+    
+    </form>
+    <div>
+        @Html.ActionLink("Back to List", "Index")
+    </div>
+
+    @section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }

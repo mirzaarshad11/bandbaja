@@ -1,0 +1,78 @@
+﻿@model IEnumerable<MvcApplication4.Models.Items>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <script src="~/Scripts/jquery-1.7.1.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>All_ItemsofAdmin</title>
+    <style>
+        .img {
+            width:100px;
+            height:100px;
+        }
+    </style>
+</head>
+<body>
+    <div class="row vdivide">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-6" >
+            <h1>Your Items</h1><br />
+        @if (Model.Count() == 0)
+        {
+            <h3>No items found, Please Add new Items</h3>
+        }
+        else
+        {
+        <table border="1">
+            <tr>
+                <td style="width:25%"><label>Item Picture</label></td>
+                <td style="width:35%"><label>Description</label></td>
+                <td style="width:15%"><label>Model No.</label></td>
+                <td style="width:15%"><label>Price</label></td>
+                <td style="width:10%"><label>Action</label></td>
+            </tr>
+            @foreach (var itm in Model)
+            {
+                <tr>
+                    <td>
+                        <h4>@itm.Name</h4>
+                        <img src="@Url.Content(itm.Path)" class="img" />
+                    </td>
+                    <td>
+                        @itm.Description
+                    </td>
+                    <td>
+                        @itm.Model
+                    </td>
+                    <td>
+                        @itm.Price
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "DeletePost", new { Model=itm.Model, Path=itm.Path, Name=itm.Name})
+                        @Html.ActionLink("Edit", "EditPost1", new { Model=itm.Model, Path=itm.Path, Name=itm.Name, Description=itm.Description, Price=itm.Price})
+                    </td>
+                </tr>
+            }
+        </table>
+        }
+            </div>
+        <div class="col-md-1"></div>
+        <div class="col-md-3">
+            <h1> </h1><br /><br />
+        <a href="~/ShopHome/AddItems">Add new Item</a><br /><br />
+            <a href="#">Edit Profile</a><br /><br />
+            <a href="~/ShopHome/SignOut">Sign Out</a>
+
+        </div>
+        <div class="col-xs-1"></div>
+    </div>
+</body>
+</html>

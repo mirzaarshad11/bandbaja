@@ -1,0 +1,70 @@
+﻿@model IEnumerable<MvcApplication4.Models.Order>
+
+@{
+    Layout = "~/Views/Shared/_cmstLayout.cshtml";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <script src="~/Content/bootstrap.js"></script>
+    <meta name="viewport" content="width=device-width" />
+    <title>OrderNow</title>
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6">
+            <h2>Your Order</h2>
+            @if(Model.Count() > 0)
+            {
+            <table>
+                <tr>
+                    <td style="width:20%"><label>Item name</label></td>
+                    <td style="width:30%"><label>Item model No</label></td>
+                    <td style="width:20%"><label>Item Price</label></td>
+                    <td style="width:20%"><label>Quantity</label></td>
+                    <td style="width:20%"><label>Action</label></td>
+                </tr>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.itemName</td>
+                        <td>@item.itemModel</td>
+                        <td>@item.itemPrice</td>
+                        <td>@item.quantity</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { id = item.Id })</td>
+                    </tr>
+                }
+            </table>
+            
+                var total = 0;
+                foreach(var i in Model)
+                {
+                    total = total + Convert.ToInt32(i.itemPrice * i.quantity);
+                }
+            <br />
+            <label>Total Amount: @total PKR</label>
+            <hr style="height:2px;background-color:black">
+            <h2>Postal Information</h2>
+            <form method="post" action="~/Dowry/ConfirmOrder">
+                <input type="text" name="customerName" placeholder="Enter your Name" /><br /><br />
+                <input type="text" name="address" placeholder="Postal Address" /><br /><br />
+                <input type="text" name="phone" placeholder="Phone No." /><br /><br />
+                <input type="submit" value="Confirm" />
+            </form>
+            }
+            else
+            {
+                <h4>you have deleted all orders, so click on 'new order'</h4>
+                <a href="~/Dowry/All_Items">new Order</a>
+            }
+        </div>
+        <div class="col-xs-3">
+        </div>
+    </div>
+</body>
+</html>
